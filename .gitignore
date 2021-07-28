@@ -1,0 +1,5 @@
+/bin
+/dep
+/obj
+wrapper.code-workspace
+/inc/*.gch
