@@ -3,6 +3,6 @@
 
 namespace brb::sdl
 {
-	void init(bool&);
+	bool init();
 	void shutdown();
 }

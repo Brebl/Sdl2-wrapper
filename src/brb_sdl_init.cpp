@@ -2,12 +2,9 @@
 
 namespace brb::sdl
 {
-	void init(bool& jep)
+	bool init()
 	{
 		try{
-			if(!jep)
-				throw std::runtime_error("bool false\n");
-
 			//SDL startup
 			if (SDL_Init(SDL_INIT_EVERYTHING))
 				throw std::runtime_error("sdl init failure\n");
@@ -22,15 +19,15 @@ namespace brb::sdl
 				throw std::runtime_error("ttf init failure\n");
 
 		} catch (std::exception& e){
-			jep = false;
 			brb::err("brb::sdl::init", e.what());
-			return;
+			return false;
 		}
 		brb::log("brb::sdl::init", "success");
 
 		//Texture filter
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 			brb::log("WARNING", "Texture hint not set.\n Uses nearest pixel sampling");
+		return true;
 	}
 
 	void shutdown()
